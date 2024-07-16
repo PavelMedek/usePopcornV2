@@ -663,7 +663,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIcon, setActiveIcon] = useState(0);
 
-  const handleIconClick = (index) => {
+  const handleIconClick = (index: any) => {
     setActiveIcon(index);
   };
 

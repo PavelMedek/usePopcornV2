@@ -502,7 +502,7 @@ const seriesList = [
   },
 ];
 
-function getRandomSeries(platform) {
+function getRandomSeries(platform: any) {
   const platformSeries = seriesList.filter(
     (series) => series.platform === platform
   );
@@ -515,9 +515,9 @@ const MaxSeries = getRandomSeries("Max");
 const AmazonPrimeSeries = getRandomSeries("Amazon Prime Video");
 const DisneySeries = getRandomSeries("Disney+");
 
-const SeriesList = ({ series }) => (
+const SeriesList = ({ series }: any) => (
   <ul>
-    {series.map((show) => (
+    {series.map((show: any) => (
       <li key={show.slug}>
         <h3>{show.title}</h3>
         <p>Seasons: {show.seasons}</p>
