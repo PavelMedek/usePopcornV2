@@ -739,11 +739,7 @@ export default function Home() {
         >
           <div className="text-gray-300 max-h-full">
             {[...Array(50)].map((_, index) => (
-              <p key={index}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                vestibulum massa id eros efficitur, a pretium velit molestie.
-                Sed eu ante aliquet, blandit nunc sit amet, suscipit lacus.
-              </p>
+              <p key={index}>aliquet, blandit nunc sit amet, suscipit lacus.</p>
             ))}
           </div>
         </div>
