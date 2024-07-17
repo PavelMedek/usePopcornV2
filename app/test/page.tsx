@@ -123,16 +123,6 @@ export default function Home() {
         }  lg:flex lg:min-h-screen lg:max-h-screen lg:pl-16 lg:pr-16 pr-4 pl-4 pt-16  overflow-y-auto`}
       >
         <div className=" w-full">
-          {/* Banner Area */}
-          {/* <AspectRatio ratio={2.4 / 1} className="">
-            <Image
-              src="/banner.jpg"
-              alt="Photo by Drew Beamer"
-              fill
-              className="rounded-3xl object-cover"
-            />
-          </AspectRatio> */}
-
           <div className="relative rounded-3xl aspect-square lg:aspect-[2.4/1] bg-cover ">
             <Image
               src="/banner.jpg"
@@ -142,7 +132,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-4 grid-cols-2  gap-8 pt-8">
+          <div className="grid lg:grid-cols-5 grid-cols-2 gap-8 pt-8">
             <AspectRatio
               ratio={1 / 1}
               className="bg-red-600 rounded-3xl transform transition duration-300 hover:scale-105 border-4"
@@ -182,6 +172,39 @@ export default function Home() {
             >
               <Image
                 src="/disney-logo.webp"
+                alt="Photo by Drew Beamer"
+                fill
+                className="object-cover rounded-3xl cursor-pointer"
+              />
+            </AspectRatio>
+            <AspectRatio
+              ratio={1 / 1}
+              className="bg-red-600 rounded-3xl transform transition duration-300 hover:scale-105 border-4"
+            >
+              <Image
+                src="/hulu-logo.png"
+                alt="Photo by Drew Beamer"
+                fill
+                className="object-cover rounded-3xl cursor-pointer"
+              />
+            </AspectRatio>
+            <AspectRatio
+              ratio={1 / 1}
+              className="bg-red-600 rounded-3xl transform transition duration-300 hover:scale-105 border-4"
+            >
+              <Image
+                src="/peacock-logo.jpg"
+                alt="Photo by Drew Beamer"
+                fill
+                className="object-cover rounded-3xl cursor-pointer"
+              />
+            </AspectRatio>
+            <AspectRatio
+              ratio={1 / 1}
+              className="bg-red-600 rounded-3xl transform transition duration-300 hover:scale-105 border-4"
+            >
+              <Image
+                src="/skyshowtime-logo.jpg"
                 alt="Photo by Drew Beamer"
                 fill
                 className="object-cover rounded-3xl cursor-pointer"
