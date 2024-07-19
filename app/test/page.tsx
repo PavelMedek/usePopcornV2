@@ -14,6 +14,9 @@ interface Series {
   platform: string;
   thumbnail: string;
   seasons: number;
+  banner: string;
+  description: string;
+  logo: string;
 }
 
 export default function Home() {
@@ -23,6 +26,7 @@ export default function Home() {
   const [seriesByPlatform, setSeriesByPlatform] = useState<
     Record<string, Series[]>
   >({});
+  const [randomSeries, setRandomSeries] = useState<Series | null>(null);
 
   function getRandomSeries(platform: string): Series[] {
     const platformSeries = seriesList.filter(
@@ -31,17 +35,10 @@ export default function Home() {
     const shuffled = platformSeries.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   }
-
-  useEffect(() => {
-    const platforms = [...new Set(seriesList.map((series) => series.platform))];
-    const seriesSelection: Record<string, Series[]> = {};
-
-    platforms.forEach((platform) => {
-      seriesSelection[platform] = getRandomSeries(platform);
-    });
-
-    setSeriesByPlatform(seriesSelection);
-  }, []);
+  function getRandomSeriesOne(): Series {
+    const shuffled = seriesList.sort(() => 0.5 - Math.random());
+    return shuffled[0];
+  }
 
   const handleIconClick = (index: number) => {
     setActiveIcon(index);
@@ -55,6 +52,18 @@ export default function Home() {
   const filteredSeriesList = seriesList.filter((series) =>
     series.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  useEffect(() => {
+    const platforms = [...new Set(seriesList.map((series) => series.platform))];
+    const seriesSelection: Record<string, Series[]> = {};
+
+    platforms.forEach((platform) => {
+      seriesSelection[platform] = getRandomSeries(platform);
+    });
+
+    setSeriesByPlatform(seriesSelection);
+    setRandomSeries(getRandomSeriesOne());
+  }, []);
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col lg:flex-row">
@@ -124,12 +133,36 @@ export default function Home() {
       >
         <div className=" w-full">
           <div className="relative rounded-3xl aspect-square lg:aspect-[2.4/1] bg-cover ">
-            <Image
-              src="/banner.jpg"
-              alt="Photo by Drew Beamer"
-              fill
-              className="rounded-3xl object-cover"
-            />
+            {randomSeries ? (
+              <>
+                <Image
+                  src={randomSeries.banner}
+                  alt={randomSeries.title}
+                  fill
+                  className="rounded-3xl object-cover"
+                />
+                <div className="p-4 rounded-3xl mt-4 z-50 relative h-full flex flex-col justify-end w-1/2">
+                  <div className="h-36 mb-4 flex justify-start">
+                    <img
+                      src={randomSeries.logo}
+                      alt={randomSeries.title}
+                      className="h-36"
+                    />
+                  </div>
+                  <h2 className="text-3xl font-bold">{randomSeries.title}</h2>
+                  <p className="text-xl mt-2 ">
+                    {randomSeries.seasons === 1
+                      ? "1 řada"
+                      : randomSeries.seasons >= 2 && randomSeries.seasons <= 4
+                      ? `${randomSeries.seasons} řady`
+                      : `${randomSeries.seasons} řad`}
+                  </p>
+                  <p className="mt-4">{randomSeries.description}</p>
+                </div>
+              </>
+            ) : (
+              <div className="rounded-3xl object-cover bg-gray-700"></div>
+            )}
           </div>
 
           <div className="grid lg:grid-cols-5 grid-cols-2 gap-8 pt-8">
