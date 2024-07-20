@@ -6,6 +6,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { seriesList } from "@/lib/data.js";
+import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
 
 interface Series {
   slug: string;
@@ -111,7 +113,7 @@ export default function Home() {
             {filteredSeriesList.map((series, index) => (
               <div
                 key={index}
-                className="bg-gray-800 rounded-lg p-4 mb-2 shadow-md transition-colors duration-300 hover:bg-gray-700"
+                className="bg-gray-800 rounded-lg p-3 mb-2 shadow-md transition-colors duration-300 hover:bg-gray-700"
               >
                 <a
                   href="#"
@@ -132,7 +134,7 @@ export default function Home() {
         }  lg:flex lg:min-h-screen lg:max-h-screen lg:pl-16 lg:pr-16 pr-4 pl-4 pt-16  overflow-y-auto`}
       >
         <div className=" w-full">
-          <div className="relative rounded-3xl aspect-square lg:aspect-[2.4/1] bg-cover ">
+          {/* <div className="relative rounded-3xl aspect-square xl:aspect-[2.4/1] bg-cover bg-opacity-60">
             {randomSeries ? (
               <>
                 <Image
@@ -141,23 +143,76 @@ export default function Home() {
                   fill
                   className="rounded-3xl object-cover"
                 />
-                <div className="p-4 rounded-3xl mt-4 z-50 relative h-full flex flex-col justify-end w-1/2">
-                  <div className="h-36 mb-4 flex justify-start">
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0D0C0F] rounded-3xl" />
+                <div className="p-4 rounded-3xl mt-4 z-50 relative h-full flex flex-col justify-end xl:w-1/2">
+                  <div className=" mb-4 flex justify-start">
                     <img
                       src={randomSeries.logo}
+                      // src={"/shows/the-witcher-logo.png"}
                       alt={randomSeries.title}
                       className="h-36"
                     />
                   </div>
-                  <h2 className="text-3xl font-bold">{randomSeries.title}</h2>
-                  <p className="text-xl mt-2 ">
-                    {randomSeries.seasons === 1
-                      ? "1 řada"
-                      : randomSeries.seasons >= 2 && randomSeries.seasons <= 4
-                      ? `${randomSeries.seasons} řady`
-                      : `${randomSeries.seasons} řad`}
-                  </p>
+                  <div className="flex gap-1">
+                    <p className="text-xl mt-2">
+                      {randomSeries.genre.split(", ")[0]} •
+                    </p>
+                    <p className="text-xl mt-2">
+                      {randomSeries.seasons === 1
+                        ? "1 řada"
+                        : randomSeries.seasons >= 2 && randomSeries.seasons <= 4
+                        ? `${randomSeries.seasons} řady`
+                        : `${randomSeries.seasons} řad`}
+                    </p>
+                  </div>
                   <p className="mt-4">{randomSeries.description}</p>
+                  <Button className="w-1/3 mt-4" variant="secondary">
+                    <Play />
+                    Sledovat
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="rounded-3xl object-cover bg-gray-700"></div>
+            )}
+          </div> */}
+          <div className="relative rounded-3xl aspect-square xl:aspect-[2.4/1] bg-cover bg-opacity-60 overflow-hidden">
+            {randomSeries ? (
+              <>
+                <Image
+                  src={randomSeries.banner}
+                  alt={randomSeries.title}
+                  fill
+                  className="rounded-3xl object-cover w-full h-full"
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0D0C0F] rounded-3xl" />
+                <div className="p-4 rounded-3xl z-50 relative h-full flex flex-col justify-end xl:w-1/2">
+                  <div className="mb-4 flex justify-start items-end h-24 md:h-36 xl:h-48 overflow-hidden">
+                    <img
+                      src={randomSeries.logo}
+                      alt={randomSeries.title}
+                      className="h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-1">
+                    <p className="text-xl mt-2">
+                      {randomSeries.genre.split(", ")[0]} •
+                    </p>
+                    <p className="text-xl mt-2">
+                      {randomSeries.seasons === 1
+                        ? "1 řada"
+                        : randomSeries.seasons >= 2 && randomSeries.seasons <= 4
+                        ? `${randomSeries.seasons} řady`
+                        : `${randomSeries.seasons} řad`}
+                    </p>
+                  </div>
+                  <p className="mt-4 text-base xl:text-lg">
+                    {randomSeries.description}
+                  </p>
+                  <Button className="w-1/3 mt-4" variant="secondary">
+                    <Play />
+                    Sledovat
+                  </Button>
                 </div>
               </>
             ) : (
