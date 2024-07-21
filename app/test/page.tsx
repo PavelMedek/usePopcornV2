@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { seriesList, streamingPlatforms } from "@/lib/data.js";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { Play, HomeIcon, Menu } from "lucide-react";
 
 interface Series {
   slug: string;
@@ -76,26 +76,43 @@ export default function Home() {
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col lg:flex-row">
       <button
-        className="fixed top-0 right-0 lg:hidden p-4 z-50 bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
+        className="fixed top-0 right-0 lg:hidden p-4 z-50 bg-gray-900 hover:bg-gray-700 transition-colors duration-300 rounded-full m-1"
         onClick={toggleMenu}
       >
-        Toggle Menu
+        <Menu />
       </button>
       <div className={`flex lg:flex ${menuOpen ? "flex-row" : "hidden"}`}>
         {/* Left Sidebar */}
-        <div className="bg-gray-800 w-16 min-h-screen ">
+        <div className="bg-gray-800 w-20 min-h-screen ">
           <ScrollArea className="overflow-y-auto max-h-screen pt-16">
-            {[...Array(4)].map((_, index) => (
-              <div className="w-16 h-10 flex mb-6" key={index}>
+            <div className="w-20 h-10 flex mb-8">
+              <div className="w-1 h-14 bg-transparent"></div>
+              <div className="w-14 h-14 rounded-full ml-2 cursor-pointer bg-gray-900 grid place-items-center hover:bg-gray-600 transition-colors duration-300">
+                <HomeIcon className="text-white w-11 h-11" />
+              </div>
+            </div>
+            {streamingPlatforms.map((platform, index) => (
+              <div className="w-20 h-10 flex mb-8" key={index}>
                 {activeIcon === index ? (
-                  <div className="w-1 h-full bg-red-600"></div>
+                  <div
+                    className="w-1 h-14 rounded-r-full"
+                    style={{
+                      backgroundColor: platform.color,
+                    }}
+                  ></div>
                 ) : (
-                  <div className="w-1 h-full bg-transparent"></div>
+                  <div className="w-1 h-14 bg-transparent"></div>
                 )}
                 <div
                   onClick={() => handleIconClick(index)}
-                  className="w-11 h-11 bg-white rounded-full ml-1 cursor-pointer"
-                ></div>
+                  className="w-14 h-14 rounded-full ml-2 cursor-pointer"
+                >
+                  <img
+                    src={platform.logo}
+                    alt={platform.slug}
+                    className="rounded-full w-14 h-14 object-cover"
+                  />
+                </div>
               </div>
             ))}
           </ScrollArea>
