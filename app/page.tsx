@@ -16,11 +16,14 @@ export default function Home() {
         <title>usePopcorn</title>
       </Head>
       <div className="bg-black bg-opacity-50 min-h-screen flex flex-col justify-between items-center text-center px-4 py-6">
-        <div className="w-full flex justify-between items-center px-4">
+        <div className="w-full flex justify-between items-center px-4 gap-6">
           <h1 className="text-white text-2xl md:text-3xl font-bold">
             usePopcorn
           </h1>
-          <Button asChild className="bg-black">
+          <Button
+            asChild
+            className="flex items-center justify-center p-6 bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300"
+          >
             <Link href="/login">Login</Link>
           </Button>
         </div>
