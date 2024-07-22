@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { seriesList, streamingPlatforms } from "@/lib/data.js";
 import { Button } from "@/components/ui/button";
 import { Play, HomeIcon, Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface Series {
   slug: string;
@@ -27,11 +29,7 @@ interface Platforms {
   slug: string;
 }
 
-export default function PlatformsLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const PlatformLayout = ({ children }: { children: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeIcon, setActiveIcon] = useState<number>(0);
@@ -39,6 +37,8 @@ export default function PlatformsLayout({
     Record<string, Series[]>
   >({});
   const [randomSeries, setRandomSeries] = useState<Series | null>(null);
+
+  const pathname = usePathname();
 
   function getRandomSeries(platform: string): Series[] {
     const platformSeries = seriesList.filter(
@@ -64,6 +64,16 @@ export default function PlatformsLayout({
   const filteredSeriesList = seriesList.filter((series) =>
     series.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const seriesRoutes = streamingPlatforms.map((item) => ({
+    isActive: pathname === `/platforms/${item.slug}`,
+    name: item.name,
+    logo: item.logo,
+    color: item.color,
+    slug: item.slug,
+  }));
+
+  console.log(seriesRoutes);
 
   useEffect(() => {
     const platforms = [...new Set(seriesList.map((series) => series.platform))];
@@ -91,35 +101,50 @@ export default function PlatformsLayout({
             {/* Left Sidebar */}
             <div className="bg-gray-800 w-20 min-h-screen ">
               <ScrollArea className="overflow-y-auto max-h-screen pt-16">
-                <div className="w-20 h-10 flex mb-8">
-                  <div className="w-1 h-14 bg-transparent"></div>
-                  <div className="w-14 h-14 rounded-full ml-2 cursor-pointer bg-gray-900 grid place-items-center hover:bg-gray-600 transition-colors duration-300">
-                    <HomeIcon className="text-white w-11 h-11" />
+                <Link href={"/platforms"}>
+                  <div
+                    className="w-20 h-10 flex mb-8"
+                    onClick={() => setMenuOpen((prev) => !prev)}
+                  >
+                    <div
+                      className="w-1 h-14 rounded-r-full"
+                      style={{
+                        backgroundColor:
+                          pathname === "/platforms" ? "#a855f7" : "transparent",
+                      }}
+                    ></div>
+                    <div className="w-14 h-14 rounded-full ml-2 cursor-pointer bg-gray-900 grid place-items-center hover:bg-gray-600 transition-colors duration-300">
+                      <HomeIcon className="text-white w-11 h-11" />
+                    </div>
                   </div>
-                </div>
-                {streamingPlatforms.map((platform, index) => (
-                  <div className="w-20 h-10 flex mb-8" key={index}>
-                    {activeIcon === index ? (
+                </Link>
+                {seriesRoutes.map((platform, index) => (
+                  <Link href={`/platforms/${platform.slug}`}>
+                    <div
+                      className="w-20 h-10 flex mb-8"
+                      key={index}
+                      onClick={() => setMenuOpen((prev) => !prev)}
+                    >
                       <div
                         className="w-1 h-14 rounded-r-full"
                         style={{
-                          backgroundColor: platform.color,
+                          backgroundColor: platform.isActive
+                            ? platform.color
+                            : "transparent",
                         }}
                       ></div>
-                    ) : (
-                      <div className="w-1 h-14 bg-transparent"></div>
-                    )}
-                    <div
-                      onClick={() => handleIconClick(index)}
-                      className="w-14 h-14 rounded-full ml-2 cursor-pointer"
-                    >
-                      <img
-                        src={platform.logo}
-                        alt={platform.slug}
-                        className="rounded-full w-14 h-14 object-cover"
-                      />
+                      <div
+                        onClick={() => handleIconClick(index)}
+                        className="w-14 h-14 rounded-full ml-2 cursor-pointer"
+                      >
+                        <img
+                          src={platform.logo}
+                          alt={platform.slug}
+                          className="rounded-full w-14 h-14 object-cover"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </ScrollArea>
             </div>
@@ -167,4 +192,6 @@ export default function PlatformsLayout({
       </body>
     </html>
   );
-}
+};
+
+export default PlatformLayout;
