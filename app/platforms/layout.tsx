@@ -119,10 +119,12 @@ const PlatformLayout = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </Link>
                 {seriesRoutes.map((platform, index) => (
-                  <Link href={`/platforms/${platform.slug}`}>
+                  <Link
+                    href={`/platforms/${platform.slug}`}
+                    key={platform.slug}
+                  >
                     <div
                       className="w-20 h-10 flex mb-8"
-                      key={index}
                       onClick={() => setMenuOpen((prev) => !prev)}
                     >
                       <div
