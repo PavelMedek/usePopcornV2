@@ -95,7 +95,7 @@ export default function Login() {
               </div>
               <div className="flex items-center justify-between">
                 <Button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="flex items-center justify-center w-full bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300"
                   type="submit"
                   onClick={() => router.push("/platforms")}
                 >

@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
           <Button
             asChild
-            className="flex items-center justify-center p-6 bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300"
+            className="flex items-center justify-center p-6 pl-10 pr-10 bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300"
           >
             <Link href="/login">Login</Link>
           </Button>

@@ -92,7 +92,7 @@ export default function Home() {
               <p className="mt-4 text-base xl:text-lg hidden lg:block">
                 {randomSeries.description}
               </p>
-              <Button className="watch-button w-1/3 mt-4 flex items-center justify-center p-3 bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300">
+              <Button className="watch-button lg:w-1/3 w-full mt-4 flex items-center justify-center p-3 bg-gray-800 text-white font-bold rounded-full border-2 border-transparent hover:bg-gray-700 hover:border-purple-500 hover:scale-105 transition-transform duration-300">
                 <Play className="mr-2" />
                 Sledovat
               </Button>
