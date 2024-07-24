@@ -210,9 +210,9 @@ const PlatformLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en">
       <body className="min-h-screen bg-background font-sans antialiased">
         <LayoutClient
-          /* eslint-disable react/prop-types */
+          /* eslint-disable react/no-children-prop */
           children={children}
-          /* eslint-enable react/prop-types */
+          /* eslint-enable react/no-children-prop */
           seriesList={seriesList}
           streamingPlatforms={streamingPlatforms}
         />
