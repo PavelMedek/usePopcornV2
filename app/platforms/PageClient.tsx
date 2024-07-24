@@ -5,9 +5,17 @@ import { seriesList, streamingPlatforms } from "@/lib/data";
 import Banner from "@/components/Banner";
 import PlatformCard from "@/components/PlatformCard";
 import SeriesSection from "@/components/SeriesSection";
-import { Series } from "@/types";
+import { Platforms, Series } from "@/types";
 
-export default function Home() {
+interface PageClientProps {
+  seriesList: Series[];
+  streamingPlatforms: Platforms[];
+}
+
+export default function Home({
+  seriesList,
+  streamingPlatforms,
+}: PageClientProps) {
   const [seriesByPlatform, setSeriesByPlatform] = useState<
     Record<string, Series[]>
   >({});
