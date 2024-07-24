@@ -7,7 +7,7 @@ import { HomeIcon, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Platforms, Series } from "@/types";
 
-interface NavigationItemProps {
+interface NNavigationSidebarProps {
   menuOpen: boolean;
   setMenuOpen: (arg0: boolean) => void;
   streamingPlatforms: Platforms[];
@@ -19,14 +19,12 @@ const NavigationSidebar = ({
   setMenuOpen,
   streamingPlatforms,
   seriesList,
-}: NavigationItemProps) => {
-  const [activeIcon, setActiveIcon] = useState<number>(0);
+}: NNavigationSidebarProps) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const pathname = usePathname();
 
   const handleIconClick = (index: number) => {
-    setActiveIcon(index);
     setMenuOpen(false); // Close the menu when an icon is clicked
     setSearchQuery("");
   };
