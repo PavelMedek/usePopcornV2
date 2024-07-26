@@ -46,6 +46,8 @@ export default function Home({
     setRandomSeries(getRandomSeriesOne());
   }, []);
 
+  console.log(randomSeries);
+
   return (
     <div className="lg:pl-16 lg:pr-16 pr-4 pl-4 pt-16 w-full">
       <Banner series={randomSeries} />

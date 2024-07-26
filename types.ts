@@ -1,7 +1,7 @@
 export interface Series {
   slug: string;
   title: string;
-  genre: string;
+  genre: Array<string>;
   platform: string;
   thumbnail: string;
   seasons: number;

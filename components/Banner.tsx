@@ -30,7 +30,7 @@ export default function Banner({ series }: BannerProps) {
               />
             </div>
             <div className="flex flex-wrap gap-1">
-              <p className="text-xl mt-2">{series.genre.split(", ")[0]} •</p>
+              <p className="text-xl mt-2">{series.genre[0]} •</p>
               <p className="text-xl mt-2">
                 {series.seasons === 1
                   ? "1 řada"
