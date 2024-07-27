@@ -20,8 +20,12 @@ const NavigationPlatformSidebar = ({
   streamingPlatforms,
   handleIconClick,
 }: NavigationSidebarPlatformProps) => {
+  const showName = pathname.split("/")[3];
+
   const platformRoutes = streamingPlatforms.map((item) => ({
-    isActive: pathname === `/platforms/${item.slug}`,
+    isActive:
+      pathname === `/platforms/${item.slug}` ||
+      pathname === `/platforms/${item.slug}/${showName}`,
     name: item.name,
     logo: item.logo,
     color: item.color,
