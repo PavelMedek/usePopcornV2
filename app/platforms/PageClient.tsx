@@ -25,7 +25,9 @@ export default function Home({
   function getRandomSeries(platform: string): Series[] {
     const normalizedPlatform = platform.toLowerCase();
     const platformSeries = seriesList.filter(
-      (series) => series.platformSlug === normalizedPlatform
+      (series) =>
+        series.platformSlug &&
+        series.platformSlug.toLowerCase() === normalizedPlatform
     );
     console.log(`Platform Series for ${platform}:`, platformSeries);
     const shuffled = platformSeries.sort(() => 0.5 - Math.random());
@@ -48,9 +50,11 @@ export default function Home({
 
     const platformCounts: Record<string, number> = {};
     seriesList.forEach((series) => {
-      const normalizedPlatform = series.platformSlug.toLowerCase();
-      platformCounts[normalizedPlatform] =
-        (platformCounts[normalizedPlatform] || 0) + 1;
+      if (series.platformSlug) {
+        const normalizedPlatform = series.platformSlug.toLowerCase();
+        platformCounts[normalizedPlatform] =
+          (platformCounts[normalizedPlatform] || 0) + 1;
+      }
     });
 
     console.log("Platform Counts:", platformCounts);
