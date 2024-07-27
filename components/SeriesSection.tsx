@@ -22,7 +22,7 @@ export default function SeriesSection({
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-1 md:sm:grid-cols-2 gap-4">
         {series.map((show) => (
-          <SeriesCard key={show.slug} show={show} link={show.slug} />
+          <SeriesCard key={show.slug} show={show} link={show.slug ?? ""} />
         ))}
       </div>
     </div>

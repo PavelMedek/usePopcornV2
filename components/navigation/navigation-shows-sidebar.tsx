@@ -26,12 +26,16 @@ const NavigationShowSidebar: React.FC<NavigationSidebarShowProps> = ({
   seriesList,
 }) => {
   const filteredSeriesList = seriesList.filter((series) => {
-    const matchesTitle = series.title
+    const title = series.title || "";
+    const platformSlug = series.platformSlug || "";
+
+    const matchesTitle = title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
     const matchesPlatform = platformName
-      ? series.platformSlug.toLowerCase() === platformName.toLowerCase()
+      ? platformSlug.toLowerCase() === platformName.toLowerCase()
       : true;
+
     return matchesTitle && matchesPlatform;
   });
 
