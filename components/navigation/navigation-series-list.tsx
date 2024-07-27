@@ -1,4 +1,5 @@
 import { Series } from "@/types";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface SeriesItemProps {
@@ -18,12 +19,12 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ series, active }) => {
         active ? "bg-gray-700" : "bg-gray-800"
       } rounded-lg p-3 mb-2 shadow-md transition-colors duration-300 hover:bg-gray-700`}
     >
-      <a
+      <Link
         href={`/platforms/${series.platformSlug}/${series.link}/`}
         className="block hover:text-gray-300 transition duration-300"
       >
         {series.title}
-      </a>
+      </Link>
     </div>
   );
 };
