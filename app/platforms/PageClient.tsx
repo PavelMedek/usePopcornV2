@@ -90,7 +90,15 @@ export default function Home({
       {Object.keys(seriesByPlatform).map((platform) => (
         <SeriesSection
           key={platform}
-          platform={platform}
+          platform={platform
+            .toUpperCase()
+            .replace(/-/g, " ")
+            .split(" ")
+            .map(
+              (word) =>
+                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            )
+            .join(" ")}
           series={seriesByPlatform[platform]}
         />
       ))}
