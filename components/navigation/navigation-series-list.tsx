@@ -40,6 +40,14 @@ const SeriesList: React.FC<SeriesListProps> = ({ seriesList }) => {
     title: item.title,
     active: pathname === `/platforms/${platformName}/${item.slug}`,
     platformSlug: item.platformSlug,
+    slug: item.slug,
+    genre: item.genre,
+    platform: item.platform,
+    thumbnail: item.thumbnail,
+    seasons: item.seasons,
+    banner: item.banner,
+    description: item.description,
+    logo: item.logo,
   }));
 
   return (

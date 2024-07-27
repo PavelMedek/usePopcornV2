@@ -1,14 +1,14 @@
 export interface Series {
-  slug?: string;
-  title?: string;
-  genre?: Array<string>;
-  platform?: string;
-  thumbnail?: string;
-  seasons?: number;
-  banner?: string;
-  description?: string;
-  logo?: string;
-  platformSlug?: string;
+  slug: string;
+  title: string;
+  genre: Array<string>;
+  platform: string;
+  thumbnail: string;
+  seasons: number;
+  banner: string;
+  description: string;
+  logo: string;
+  platformSlug: string;
   link?: string;
   isActive?: boolean;
 }
