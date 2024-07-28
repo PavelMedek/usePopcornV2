@@ -11,19 +11,16 @@ interface NavigationSidebarShowProps {
   searchQuery: string;
   platformName: string;
   seriesList: Series[];
+  handleIconClick: (arg0: number) => void;
 }
 
-// SearchBar Component
-
-// SeriesItem Component
-
-// Main Component
 const NavigationShowSidebar: React.FC<NavigationSidebarShowProps> = ({
   menuOpen,
   setSearchQuery,
   searchQuery,
   platformName,
   seriesList,
+  handleIconClick,
 }) => {
   const filteredSeriesList = seriesList.filter((series) => {
     const title = series.title || "";
@@ -46,7 +43,10 @@ const NavigationShowSidebar: React.FC<NavigationSidebarShowProps> = ({
       } max-h-screen pt-16 pl-4 pr-4 flex flex-col`}
     >
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <SeriesList seriesList={filteredSeriesList} />
+      <SeriesList
+        seriesList={filteredSeriesList}
+        handleIconClick={handleIconClick}
+      />
     </div>
   );
 };

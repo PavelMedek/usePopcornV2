@@ -6,13 +6,15 @@ interface SeriesItemProps {
   series: Series;
   platformName: string;
   active: boolean;
+  onClick: () => void;
 }
 
 interface SeriesListProps {
   seriesList: Series[];
+  handleIconClick: (arg0: number) => void;
 }
 
-const SeriesItem: React.FC<SeriesItemProps> = ({ series, active }) => {
+const SeriesItem: React.FC<SeriesItemProps> = ({ series, active, onClick }) => {
   return (
     <div
       className={`${
@@ -22,6 +24,7 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ series, active }) => {
       <Link
         href={`/platforms/${series.platformSlug}/${series.link}/`}
         className="block hover:text-gray-300 transition duration-300"
+        onClick={onClick}
       >
         {series.title}
       </Link>
@@ -29,7 +32,10 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ series, active }) => {
   );
 };
 
-const SeriesList: React.FC<SeriesListProps> = ({ seriesList }) => {
+const SeriesList: React.FC<SeriesListProps> = ({
+  seriesList,
+  handleIconClick,
+}) => {
   const pathname = usePathname();
 
   const [_, platform, platformName, neco, articleOrEpisode] =
@@ -58,6 +64,7 @@ const SeriesList: React.FC<SeriesListProps> = ({ seriesList }) => {
           series={series}
           platformName={platformName}
           active={series.active}
+          onClick={() => handleIconClick(index)}
         />
       ))}
     </div>

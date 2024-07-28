@@ -46,6 +46,7 @@ const NavigationSidebar = ({
       />
 
       <NavigationShowSidebar
+        handleIconClick={handleIconClick}
         menuOpen={menuOpen}
         platformName={platformName}
         searchQuery={searchQuery}
